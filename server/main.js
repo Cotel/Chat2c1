@@ -18,8 +18,10 @@ io.on('connection', function(socket) {
 	socket.emit('messages', mensajes);
 
 	socket.on('newMessage', function(data) {
-		mensajes.push(data);
-		//console.log(data);
-		io.sockets.emit('oneMessage', mensajes[mensajes.length-1]);
+		if(data.texto != null || data.texto != "") {
+			mensajes.push(data);
+			//console.log(data);
+			io.sockets.emit('oneMessage', mensajes[mensajes.length-1]);
+		}		
 	});
 });

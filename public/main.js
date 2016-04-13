@@ -3,7 +3,7 @@ if(Cookies.get('name') == null) {
 	if(resuname != null) {
 		Cookies.set('name', resuname, {expires: 7, path: '/'});
 	} else {
-		Cookies.set('name', 'usuario', {expires: 7, path: 7});
+		Cookies.set('name', 'Anonymous', {expires: 7, path: '/'});
 	}
 }
 
