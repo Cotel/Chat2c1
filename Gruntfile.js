@@ -7,10 +7,11 @@ module.exports = function(grunt) {
                 src: [
                     './public/index.html'
                 ],
-                directory: './public/libs/'
+                directory: './public/libs/',
+                exclude: [/cryptojslib/]
             }
         }
-        
+
     });
 
     grunt.loadNpmTasks('grunt-wiredep');

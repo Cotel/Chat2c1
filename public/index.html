@@ -6,8 +6,9 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<!-- bower:js -->
 	<script src="libs/jquery/dist/jquery.js"></script>
-	<script src="libs/js-cookie/src/js.cookie.js"></script>
+	<script src="libs/js-cookie/src/js.cookie.js"></script>	
 	<!-- endbower -->
+	<script src="libs/cryptojslib/rollups/sha3.js"></script>
 	<script src="main.js"></script>
 	<link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
 </head>
@@ -15,7 +16,7 @@
 	<h1>Chat room 2c1</h1>
 	<div id="content">
 		<div id="chat"></div>
-		<form>
+		<form autocomplete="off">
 			<input type="text" id="cajaT">
 			<input type="submit" onclick="addMessage(); return false;" value=">">
 		</form>

@@ -1,4 +1,5 @@
 var express = require('express');
+var sanitizeHtml = require('sanitize-html');
 var app = express();
 var port = process.env.PORT || 7777;
 console.log("Iniciando server en puerto: " + port);
@@ -18,10 +19,17 @@ io.on('connection', function(socket) {
 	socket.emit('messages', mensajes);
 
 	socket.on('newMessage', function(data) {
-		if(data.texto != null || data.texto != "") {
+		data.usuario = sanitizeHtml(data.usuario, {
+			allowedTags: [],
+			allowedAttributes: []
+		});
+		data.texto = sanitizeHtml(data.texto);
+		if(data.texto.length > 0) {
 			mensajes.push(data);
-			//console.log(data);
+			if(mensajes.length > 20) {
+				mensajes.shift();
+			}
 			io.sockets.emit('oneMessage', mensajes[mensajes.length-1]);
-		}		
+		}
 	});
 });
