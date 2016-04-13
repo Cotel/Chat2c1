@@ -20,6 +20,6 @@ io.on('connection', function(socket) {
 	socket.on('newMessage', function(data) {
 		mensajes.push(data);
 		//console.log(data);
-		io.sockets.emit('messages', mensajes);
+		io.sockets.emit('oneMessage', mensajes[mensajes.length-1]);
 	});
 });
