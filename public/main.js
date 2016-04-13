@@ -54,7 +54,7 @@ function renderOne(data) {
 
 function addMessage() {
 	var texto = document.getElementById("cajaT");
-	if(texto == null || texto == "") {
+	if(texto.value == null || texto.value == "") {
 		return false;
 	} else {
 		var mensaje = {
