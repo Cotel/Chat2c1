@@ -1,8 +1,11 @@
 body{
     font-family: Arial;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
+    width: 100%;
     text-align: center;
 }
 
@@ -13,15 +16,18 @@ h1 {
 }
 
 #chat {
-    height: 600px;
     overflow-y: scroll;
+    padding-bottom: 64px;
 }
 
 .message {
-    width: 100%;
+    clear: both;
+    padding: 8px;
 }
 
 .message-text {
+    /*     float: left; */
+    clear: left;
     float: left;
     max-width: 256px;
     word-wrap: break-word;
@@ -31,34 +37,65 @@ h1 {
 }
 
 .message-user {
+    /*     float: left; */
+    /*     width:100%; */
+    clear: left;
     float: left;
     display: block;
 }
 
-.message-user::after {
+/*.message-user::after {
     float: left;
     content: ":";
-}
-
+}*/
 
 .selfmessage .message-user {
+    /*     float: left; */
+    /*     width:100%; */
+    clear: right;
     float: right;
+    display: block;
 }
 
 .selfmessage .message-text {
+    clear: right;
     float: right;
     background-color: #effdde;
     padding: 8px;
-    border-radius: 8px 9px 8px 8px;
+    border-radius: 8px 0px 8px 8px;
 }
 
+form {
+    box-shadow: 0px 0px 8px #000;
+    position: fixed;
+    bottom: 0;
+/*     right: calc( 50% - 384px ); */
+    width: 100%;
+    max-width: 768px;
+    margin: 0px;
+/*     padding-top:8px; */
+background-color: #fff;
+border-radius: 8px;
+}
+
+
 input[type=text]{
+    
     float: left;
-    width: 90%;
-    height: 72px;
+    width: calc( 100% - 32px );
+    height: 32px;
+    background-color:#fff;
+    border: none;
+    /*     box-shadow: 0px 0px 8px #000; */
+    padding: 8px;
+    border-radius: 8px 0px 0px 8px;
 }
 
 input[type=submit] {
     /*margin-top: 20px;*/
-    padding: 30px;
+    /*     padding: 30px; */
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 0px 8px 8px 0px;
 }
