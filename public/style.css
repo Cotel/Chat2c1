@@ -10,14 +10,12 @@ h1 {
 }
 
 #content {
-    margin: 0px 20vh 0px 20vh;
-    /*margin: 0 auto;*/
-    /*max-width: 768px;*/
+    margin: 0 auto;
+    max-width: 768px;
 }
 
 #chat {
-    overflow-y: scroll;
-    padding-bottom: 64px;
+    padding-bottom: 80px;
 }
 
 .message {
@@ -68,7 +66,7 @@ h1 {
 form {
     box-shadow: 0px 0px 8px #000;
     position: fixed;
-    bottom: 0;
+    bottom: 16px;
 /*     right: calc( 50% - 384px ); */
     width: 100%;
     max-width: 768px;
@@ -80,14 +78,14 @@ border-radius: 8px;
 
 
 input[type=text]{
-    
+
     float: left;
-    width: calc( 100% - 32px );
+    width: calc( 100% - 48px );
     height: 32px;
     background-color:#fff;
     border: none;
     /*     box-shadow: 0px 0px 8px #000; */
-    padding: 8px;
+    padding: 0px 8px;
     border-radius: 8px 0px 0px 8px;
 }
 
