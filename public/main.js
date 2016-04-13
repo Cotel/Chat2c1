@@ -68,10 +68,10 @@ function addMessage() {
 
 socket.on('messages', function(data) {
 	render(data);
-	$('#chat').scrollTop($("#chat")[0].scrollHeight);
+	window.scrollTo(0,document.body.scrollHeight);
 });
 
 socket.on('oneMessage', function(data) {
 	renderOne(data);
-	$('#chat').scrollTop($("#chat")[0].scrollHeight);
+	window.scrollTo(0,document.body.scrollHeight);
 });

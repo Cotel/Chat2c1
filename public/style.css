@@ -1,5 +1,6 @@
 body{
     font-family: Arial;
+    background-color: #D6D6D6;
     margin: 0;
     padding: 0;
 }
@@ -29,7 +30,8 @@ h1 {
     float: left;
     max-width: 256px;
     word-wrap: break-word;
-    background-color: #c7c7c7;
+    background-color: #46ABC4;
+    color: white;
     padding: 8px;
     border-radius: 0px 8px 8px 8px;
 }
@@ -50,6 +52,7 @@ h1 {
 .selfmessage .message-user {
     /*     float: left; */
     /*     width:100%; */
+    font-weight: bold;
     clear: right;
     float: right;
     display: block;
@@ -58,7 +61,7 @@ h1 {
 .selfmessage .message-text {
     clear: right;
     float: right;
-    background-color: #effdde;
+    background-color: #5BD14E;
     padding: 8px;
     border-radius: 8px 0px 8px 8px;
 }
@@ -92,6 +95,9 @@ input[type=text]{
 input[type=submit] {
     /*margin-top: 20px;*/
     /*     padding: 30px; */
+    background-color: #5BD14E;
+    font-weight: bold;
+    color: white;
     width: 32px;
     height: 32px;
     border: none;
