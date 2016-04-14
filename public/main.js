@@ -21,7 +21,7 @@ var lastName = "";
 
 function getColor(color) {
 	var tono = tinycolor(color);
-	var res = ("hsv (" +tono.toHsv().h+ "% 30% 50%)");
+	var res = ("hsv (" +tono.toHsv().h+ "% 64% 77%)");
 	res = tinycolor(res);
 	return res.toHex();
 }
