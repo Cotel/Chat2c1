@@ -6,6 +6,7 @@
 		"jquery": "*",
 		"js-cookie": "*",
 		"cryptojslib": "*",
-		"tinycolor": "*"
+		"tinycolor": "*",
+		"emojione": "*"
 	}
 }

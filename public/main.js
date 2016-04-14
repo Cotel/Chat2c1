@@ -3,9 +3,9 @@ $(document).ready(function() {
  		Cookies.get('name') === "null" || Cookies.get('name') === undefined) {
 		var resuname = prompt("Introduce nombre de usuario", "");
 		if(resuname !== "") {
-			Cookies.set('name', resuname, {expires: 7, path: '/'});
+			Cookies.set('name', resuname, {path: '/'});
 		} else {
-			Cookies.set('name', 'Anonymous', {expires: 7, path: '/'});
+			Cookies.set('name', 'Anonymous', {path: '/'});
 		}
 	}
 });
@@ -55,7 +55,7 @@ function generateHTML(elem) {
 
 function checkCookie() {
 	if(Cookies.get('name') === "" || Cookies.get('name') === undefined) {
-		Cookies.set('name', 'Anonymous', {expires: 7, path: '/'});
+		Cookies.set('name', 'Anonymous', {path: '/'});
 	}
 }
 

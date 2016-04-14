@@ -6,6 +6,14 @@ var port = process.env.PORT || 7777;
 console.log("Iniciando server en puerto: " + port);
 var io = require('socket.io').listen(app.listen(port));
 
+function checkUrl(string) {
+	if(string.toLowerCase().startsWith("http")) {
+		return `<a href="${string.toLowerCase()}">${string}</a>`;
+	} else {
+		return string;
+	}
+}
+
 app.use(express.static('public'));
 
 app.get('/hello', function(req, res) {
@@ -26,6 +34,7 @@ io.on('connection', function(socket) {
 		});
 		data.texto = sanitizeHtml(data.texto);
 		data.texto = data.texto.trim();
+		data.texto = checkUrl(data.texto);
 		if(data.texto.length > 0) {
 			io.sockets.emit('oneMessage', data);
 		}
