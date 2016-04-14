@@ -5,6 +5,7 @@
 	"dependencies": {
 		"jquery": "*",
 		"js-cookie": "*",
-		"cryptojslib": "*"
+		"cryptojslib": "*",
+		"tinycolor": "*"
 	}
 }

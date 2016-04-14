@@ -24,6 +24,7 @@ io.on('connection', function(socket) {
 			allowedAttributes: []
 		});
 		data.texto = sanitizeHtml(data.texto);
+		data.texto = data.texto.trim();
 		if(data.texto.length > 0) {
 			mensajes.push(data);
 			if(mensajes.length > 20) {

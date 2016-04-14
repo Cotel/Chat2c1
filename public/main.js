@@ -19,6 +19,13 @@ var socket = io.connect(window.location.host);
 var lastUser = "";
 var lastName = "";
 
+function getColor(color) {
+	var tono = tinycolor(color);
+	var res = ("hsv ({0}% 64% 77%)", tono.toHsv().h);
+	res = tinycolor(res);
+	return res.toHsvString();
+}
+
 function generateHTML(elem) {
 	var res = "";
 	var color = elem.id.substring(0,6);
@@ -29,7 +36,7 @@ function generateHTML(elem) {
 			</div>`);
 		} else {
 			res = (`<div class="message selfmessage">
-					<div class="message-user" style="color:#${color};">${elem.usuario}</div>
+					<div class="message-user" style="color:#${getColor()};">${elem.usuario}</div>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		}
