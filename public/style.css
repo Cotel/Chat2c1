@@ -29,6 +29,11 @@ img {
     padding: 8px;
 }
 
+.system-message {
+    display: block;
+    text-align: center;
+}
+
 .message-text {
     /*     float: left; */
     clear: left;

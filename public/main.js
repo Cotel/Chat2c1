@@ -92,6 +92,34 @@ function addMessage() {
 
 socket.on('login', function(data) {
 	myId = data;
+	socket.emit('resLogin', Cookies.get('name'));
+});
+
+socket.on('activeUsers', function(data) {
+	var res = data.map(function(item, index) {
+		return item.name+", ";
+	}).join("");
+	var html = `<div class="message">
+					<div class="system-message">Connected users: ${res}</div>
+				</div>`;
+	document.getElementById('chat').innerHTML += html;
+});
+
+socket.on('userConnect', function(data) {
+	var html = `<div class="message">
+					<div class="system-message">${data} connected</div>
+				</div>`;
+	document.getElementById('chat').innerHTML += html;
+});
+
+socket.on('userLeave', function(data) {
+	var res = data.map(function(item, index) {
+		return item.name;
+	}).join("");
+	var html = `<div class="message">
+					<div class="system-message">${res} disconnected</div>
+				</div>`;
+	document.getElementById('chat').innerHTML += html;
 });
 
 socket.on('messages', function(data) {

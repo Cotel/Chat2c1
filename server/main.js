@@ -6,11 +6,13 @@ var port = process.env.PORT || 7777;
 console.log("Iniciando server en puerto: " + port);
 var io = require('socket.io').listen(app.listen(port));
 
+var users = [];
+
 function checkUrl(string) {
 	if(string.toLowerCase().endsWith('gif') ||
 		string.toLowerCase().endsWith('png') ||
 		string.toLowerCase().endsWith('jpeg') ||
-		string.toLowerCase().endsWith('jpg')) {			
+		string.toLowerCase().endsWith('jpg')) {
 		return `<img src="${string.toLowerCase()}">`;
 	}else if(string.toLowerCase().startsWith("http")) {
 		return `<a href="${string.toLowerCase()}">${string}</a>`;
@@ -30,7 +32,14 @@ io.on('connection', function(socket) {
 	var random = Math.random() * (999999 - 0) + 0;
 	var hash = SHA3(address+random);
 	socket.emit('login', hash.toString());
-	//console.log("Connection from: " + address.address);
+	socket.on('resLogin', function(data) {
+		users.push({
+			id: socket.id,
+			name: data
+		});
+		socket.emit('activeUsers', users);
+		io.sockets.emit('userConnect', data);
+	});
 
 	socket.on('newMessage', function(data) {
 		data.usuario = sanitizeHtml(data.usuario, {
@@ -45,5 +54,18 @@ io.on('connection', function(socket) {
 		if(data.texto.length > 0) {
 			io.sockets.emit('oneMessage', data);
 		}
+	});
+
+	socket.on('disconnect', function() {
+		var data;
+		for(var i = 0; i<users.length; i++) {
+			if(users[i].id == socket.id) {
+				data = users.splice(i, 1);
+				break;
+			} else {
+				continue;
+			}
+		}
+		io.sockets.emit('userLeave', data);
 	});
 });
