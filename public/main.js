@@ -21,9 +21,9 @@ var lastName = "";
 
 function getColor(color) {
 	var tono = tinycolor(color);
-	var res = ("hsv ({0}% 64% 77%)", tono.toHsv().h);
+	var res = ("hsv (" +tono.toHsv().h+ "% 30% 50%)");
 	res = tinycolor(res);
-	return res.toHsvString();
+	return res.toHex();
 }
 
 function generateHTML(elem) {
@@ -36,7 +36,7 @@ function generateHTML(elem) {
 			</div>`);
 		} else {
 			res = (`<div class="message selfmessage">
-					<div class="message-user" style="color:#${getColor()};">${elem.usuario}</div>
+					<div class="message-user" style="color:#${getColor(color)};">${elem.usuario}</div>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		}
@@ -47,7 +47,7 @@ function generateHTML(elem) {
 			</div>`);
 		} else {
 			res = (`<div class="message">
-					<div class="message-user" style="color:#${color};">${elem.usuario}</div>
+					<div class="message-user" style="color:#${getColor(color)};">${elem.usuario}</div>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		}
