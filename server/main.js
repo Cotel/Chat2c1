@@ -7,7 +7,12 @@ console.log("Iniciando server en puerto: " + port);
 var io = require('socket.io').listen(app.listen(port));
 
 function checkUrl(string) {
-	if(string.toLowerCase().startsWith("http")) {
+	if(string.toLowerCase().endsWith('gif') ||
+		string.toLowerCase().endsWith('png') ||
+		string.toLowerCase().endsWith('jpeg') ||
+		string.toLowerCase().endsWith('jpg')) {			
+		return `<img src="${string.toLowerCase()}">`;
+	}else if(string.toLowerCase().startsWith("http")) {
 		return `<a href="${string.toLowerCase()}">${string}</a>`;
 	} else {
 		return string;
