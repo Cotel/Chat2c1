@@ -8,11 +8,6 @@ $(document).ready(function() {
 			Cookies.set('name', 'Anonymous', {expires: 7, path: '/'});
 		}
 	}
-
-	$.getJSON('//api.ipify.org?format=jsonp&callback=?', function(json) {
-		var hash = CryptoJS.SHA3(json.ip+Cookies.get('name'));
-		Cookies.set('id', hash.toString(), {expires: 1, path: '/'});
-	})
 });
 
 var socket = io.connect(window.location.host);
@@ -83,7 +78,7 @@ function addMessage() {
 	} else {
 		checkCookie();
 		var mensaje = {
-			id: Cookies.get("id"),
+			id: "",
 			usuario: Cookies.get('name'),
 			texto: texto.value
 		};
