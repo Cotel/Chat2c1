@@ -16,13 +16,13 @@ app.get('/hello', function(req, res) {
 
 io.on('connection', function(socket) {
 	var address = socket.request.connection.remoteAddress;
+	var random = Math.random() * (999999 - 0) + 0;
+	var hash = SHA3(address+random);
+	socket.emit('login', hash.toString());
 	//console.log("Connection from: " + address.address);
 	socket.emit('messages', mensajes);
 
 	socket.on('newMessage', function(data) {
-		var random = Math.random() * (999999 - 0) + 0;
-		var hash = SHA3(data.usuario+address+random);
-		data.id = hash.toString();
 		data.usuario = sanitizeHtml(data.usuario, {
 			allowedTags: [],
 			allowedAttributes: []

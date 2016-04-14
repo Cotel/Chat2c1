@@ -11,6 +11,7 @@ $(document).ready(function() {
 });
 
 var socket = io.connect(window.location.host);
+var myId = "";
 var lastUser = "";
 var lastName = "";
 
@@ -24,7 +25,7 @@ function getColor(color) {
 function generateHTML(elem) {
 	var res = "";
 	var color = elem.id.substring(0,6);
-	if(Cookies.get('id') == elem.id) {
+	if(myId == elem.id) {
 		if(elem.id == lastUser) {
 			res = (`<div class="message selfmessage">
 					<div class="message-text">${elem.texto}</div>
@@ -78,7 +79,7 @@ function addMessage() {
 	} else {
 		checkCookie();
 		var mensaje = {
-			id: "",
+			id: myId,
 			usuario: Cookies.get('name'),
 			texto: texto.value
 		};
@@ -87,6 +88,10 @@ function addMessage() {
 	document.getElementById("cajaT").value = "";
 	return false;
 }
+
+socket.on('login', function(data) {
+	myId = data;
+});
 
 socket.on('messages', function(data) {
 	render(data);
