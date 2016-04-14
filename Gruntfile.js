@@ -8,7 +8,7 @@ module.exports = function(grunt) {
                     './public/index.html'
                 ],
                 directory: './public/libs/',
-                exclude: [/cryptojslib/]
+                exclude: [/cryptojslib/, /emojinearea/]
             }
         }
 

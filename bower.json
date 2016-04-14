@@ -1,12 +1,13 @@
 {
-	"name": "chat2c1",
-		"version": "0.1.0",
-		"description": "Simple chat room using Nodejs",
-	"dependencies": {
-		"jquery": "*",
-		"js-cookie": "*",
-		"cryptojslib": "*",
-		"tinycolor": "*",
-		"emojione": "*"
-	}
+  "name": "chat2c1",
+  "version": "0.1.0",
+  "description": "Simple chat room using Nodejs",
+  "dependencies": {
+    "jquery": "*",
+    "js-cookie": "*",
+    "cryptojslib": "*",
+    "tinycolor": "*",
+    "emojione": "*",
+    "emojionearea": "*"
+  }
 }

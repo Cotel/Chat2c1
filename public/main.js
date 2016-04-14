@@ -8,12 +8,19 @@ $(document).ready(function() {
 			Cookies.set('name', 'Anonymous', {path: '/'});
 		}
 	}
+
+	window.emojioneVersion = "2.1.4";
+	$("#content").emojioneArea({
+		container: "#cajaT",
+		hideSource: false,
+	});
 });
 
 var socket = io.connect(window.location.host);
 var myId = "";
 var lastUser = "";
 var lastName = "";
+
 
 function getColor(color) {
 	var tono = tinycolor(color);
