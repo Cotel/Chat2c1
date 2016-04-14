@@ -32,7 +32,9 @@ io.on('connection', function(socket) {
 			allowedTags: [],
 			allowedAttributes: []
 		});
-		data.texto = sanitizeHtml(data.texto);
+		data.texto = sanitizeHtml(data.texto, {
+			allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+		});
 		data.texto = data.texto.trim();
 		data.texto = checkUrl(data.texto);
 		if(data.texto.length > 0) {

@@ -10,6 +10,11 @@ h1 {
     text-align: center;
 }
 
+img {
+    max-width: 256px;
+    max-height: 200px;
+}
+
 #content {
     margin: 0 auto;
     max-width: 768px;

@@ -24,7 +24,7 @@ function getColor(color) {
 
 function generateHTML(elem) {
 	var res = "";
-	elem.texto = emojione.shortnameToImage(elem.texto);
+	elem.texto = emojione.toImage(elem.texto);
 	var color = elem.id.substring(0,6);
 	if(myId == elem.id) {
 		if(elem.id == lastUser) {
