@@ -72,10 +72,11 @@ img {
 .selfmessage .message-text {
     clear: right;
     float: right;
-    background-color: #5BD14E;
+    background-color: #71FF6F;
     padding: 8px;
     border-radius: 8px 0px 8px 8px;
 }
+
 
 form {
     box-shadow: 0px 0px 8px #000;
@@ -98,7 +99,7 @@ input[type=text]{
     height: 32px;
     background-color:#fff;
     border: none;
-    /*     box-shadow: 0px 0px 8px #000; */
+    box-shadow: 0px 0px 0px 0px #b4b4b4;
     padding: 0px 8px;
     border-radius: 8px 0px 0px 8px;
 }

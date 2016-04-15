@@ -9,6 +9,12 @@ $(document).ready(function() {
 		}
 	}
 
+	Notification.requestPermission();
+
+	// emojione.imageType = 'svg';
+	// emojione.sprites = true;
+	// emojione.imagePathSVGSprites = 'libs/emojione/assets/sprites/emojione.sprites.svg';
+
 	window.emojioneVersion = "2.1.4";
 	$("#content").emojioneArea({
 		container: "#cajaT",
@@ -17,10 +23,23 @@ $(document).ready(function() {
 });
 
 var socket = io.connect(window.location.host);
+var notification;
 var myId = "";
 var lastUser = "";
 var lastName = "";
+var noleidos = 0;
 
+var focused = true;
+
+window.onfocus = function() {
+	focused = true;
+	notification.close();
+	noleidos = 0;
+	document.title = "Chat 2c1";
+};
+window.onblur = function() {
+	focused = false;
+};
 
 function getColor(color) {
 	var tono = tinycolor(color);
@@ -135,6 +154,22 @@ socket.on('messages', function(data) {
 });
 
 socket.on('oneMessage', function(data) {
+	if(Notification.permission == "granted") {
+		if(data.id !== myId && !focused) {
+			var options = {
+				body: emojione.shortnameToUnicode(data.texto)
+			};
+			notification = new Notification(data.usuario, options);
+			setTimeout(function() {
+				notification.close();
+			}, 3000);
+		}
+	}
+
+	if(!focused) {
+		noleidos += 1;
+		document.title = ("("+noleidos+") Chat 2c1");
+	}
 	renderOne(data);
 	window.scrollTo(0,document.body.scrollHeight);
 });
