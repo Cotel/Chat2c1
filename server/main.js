@@ -21,6 +21,7 @@ function checkUrl(string) {
 	}
 }
 
+//app.use(express.static(__dirname + '/../public')); //raspi
 app.use(express.static('public'));
 
 app.get('/hello', function(req, res) {
@@ -39,6 +40,10 @@ io.on('connection', function(socket) {
 		});
 		socket.emit('activeUsers', users);
 		io.sockets.emit('userConnect', data);
+	});
+
+	socket.on('consulta', function() {
+		socket.emit('activeUsers', users);
 	});
 
 	socket.on('newMessage', function(data) {

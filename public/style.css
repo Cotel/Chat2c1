@@ -1,18 +1,21 @@
 nav {
+    position: fixed;
     width: 100%;
-    display: block;
+    top: 0;
+    left: 0;
+    /*display: block;*/
     background-color: #FF7851;
-    height: 100%;
-    padding-top: 1px;
+    /*height: 100%;*/
+    /*padding-top: 1px;*/
     box-shadow: 0px 1px 2px #EA3703;
-    margin-bottom: 20px;
 }
 
 body{
+    position:relative;
     font-family: Arial;
     background-color: #E6E6E6;
     margin: 0;
-    padding: 0;
+    padding-top: 80px;
 }
 
 h1 {
@@ -105,7 +108,6 @@ form {
 
 
 input[type=text]{
-
     float: left;
     width: calc( 100% - 48px );
     height: 32px;

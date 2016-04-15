@@ -99,6 +99,11 @@ function addMessage() {
 	if(texto.value.length <= 0) {
 		return false;
 	} else {
+		if(texto.value.trim() === "/who") {
+			document.getElementById("cajaT").value = "";
+			socket.emit('consulta');
+			return false;
+		}
 		checkCookie();
 		var mensaje = {
 			id: myId,
@@ -120,6 +125,7 @@ socket.on('activeUsers', function(data) {
 	var res = data.map(function(item, index) {
 		return item.name+", ";
 	}).join("");
+	res = res.substring(0, res.length-2);
 	var html = `<div class="message">
 					<div class="system-message">Connected users: ${res}</div>
 				</div>`;
