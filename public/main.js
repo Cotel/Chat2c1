@@ -15,11 +15,6 @@ $(document).ready(function() {
 	// emojione.sprites = true;
 	// emojione.imagePathSVGSprites = 'libs/emojione/assets/sprites/emojione.sprites.svg';
 
-	window.emojioneVersion = "2.1.4";
-	$("#content").emojioneArea({
-		container: "#cajaT",
-		hideSource: false,
-	});
 });
 
 var socket = io.connect(window.location.host);
@@ -43,7 +38,7 @@ window.onblur = function() {
 
 function getColor(color) {
 	var tono = tinycolor(color);
-	var res = ("hsv (" +tono.toHsv().h+ "% 64% 77%)");
+	var res = ("hsv (" +tono.toHsv().h+ "% 65% 75%)");
 	res = tinycolor(res);
 	return res.toHex();
 }
