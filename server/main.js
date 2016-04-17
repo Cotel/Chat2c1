@@ -1,10 +1,27 @@
+var fs = require('fs');
 var express = require('express');
+var https = require('https');
+var http = require('http');
 var SHA3 = require('crypto-js/sha3');
 var sanitizeHtml = require('sanitize-html');
 var app = express();
+//var ports = process.env.PORT || 7773;
 var port = process.env.PORT || 7777;
-console.log("Iniciando server en puerto: " + port);
-var io = require('socket.io').listen(app.listen(port));
+
+// var httpsOptions = {
+// 	key: fs.readFileSync('/etc/ssl/private/raspi.local.key'),
+// 	cert: fs.readFileSync('/etc/ssl/certs/raspi.local.crt')
+// };
+
+var server = http.createServer(app);
+//var servers = https.createServer(httpsOptions, app);
+//console.log("Iniciando server en puerto: " + port);
+//var io = require('socket.io').listen(app.listen(port));
+var ioServer = require('socket.io');
+var io = new ioServer();
+io.attach(server);
+//io.attach(servers);
+
 
 var users = [];
 
@@ -15,7 +32,7 @@ function checkUrl(string) {
 		string.toLowerCase().endsWith('jpg')) {
 		return `<img src="${string.toLowerCase()}">`;
 	}else if(string.toLowerCase().startsWith("http")) {
-		return `<a href="${string.toLowerCase()}">${string}</a>`;
+		return `<a href="${string.toLowerCase()}" target="_blank">${string}</a>`;
 	} else {
 		return string;
 	}
@@ -74,3 +91,10 @@ io.on('connection', function(socket) {
 		io.sockets.emit('userLeave', data);
 	});
 });
+
+server.listen(port, function() {
+	console.log("Iniciando servidor http en puerto: " + port);
+});
+// servers.listen(ports, function() {
+// 	console.log("Iniciando servidor https en puerto: " + ports);
+// });
