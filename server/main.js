@@ -2,9 +2,11 @@ var fs = require('fs');
 var express = require('express');
 var https = require('https');
 var http = require('http');
+var helmet = require('helmet');
 var SHA3 = require('crypto-js/sha3');
 var sanitizeHtml = require('sanitize-html');
 var app = express();
+app.use(helmet());
 //var ports = process.env.PORT || 7773;
 var port = process.env.PORT || 7777;
 
@@ -37,6 +39,7 @@ function checkUrl(string) {
 		return string;
 	}
 }
+
 
 //app.use(express.static(__dirname + '/../public')); //raspi
 app.use(express.static('public'));

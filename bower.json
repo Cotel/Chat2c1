@@ -4,6 +4,7 @@
   "description": "Simple chat room using Nodejs",
   "dependencies": {
     "jquery": "*",
+    "jquery-textcomplete": "*",
     "js-cookie": "*",
     "cryptojslib": "*",
     "tinycolor": "*",
