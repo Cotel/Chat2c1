@@ -137,6 +137,8 @@ socket.on('userConnect', function(data) {
 					<div class="system-message">${data} connected</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
+	var chatCont = document.getElementById('chat');
+	chatCont.scrollTop = chatCont.scrollHeight;
 });
 
 socket.on('userLeave', function(data) {
@@ -147,11 +149,14 @@ socket.on('userLeave', function(data) {
 					<div class="system-message">${res} disconnected</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
+	var chatCont = document.getElementById('chat');
+	chatCont.scrollTop = chatCont.scrollHeight;
 });
 
 socket.on('messages', function(data) {
 	render(data);
-	window.scrollTo(0,document.body.scrollHeight);
+	var chatCont = document.getElementById('chat');
+	chatCont.scrollTop = chatCont.scrollHeight;
 });
 
 socket.on('oneMessage', function(data) {
@@ -172,5 +177,6 @@ socket.on('oneMessage', function(data) {
 		document.title = ("("+noleidos+") Chat 2c1");
 	}
 	renderOne(data);
-	window.scrollTo(0,document.body.scrollHeight);
+	var chatCont = document.getElementById('chat');
+	chatCont.scrollTop = chatCont.scrollHeight;
 });
