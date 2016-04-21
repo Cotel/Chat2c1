@@ -5,6 +5,7 @@
   "dependencies": {
     "jquery": "*",
     "jquery-textcomplete": "*",
+    "perfect-scrollbar": "*",
     "js-cookie": "*",
     "cryptojslib": "*",
     "tinycolor": "*",

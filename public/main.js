@@ -9,6 +9,8 @@ $(document).ready(function() {
 		}
 	}
 
+	$("#chat").perfectScrollbar();
+
 	Notification.requestPermission();
 
 	// emojione.imageType = 'svg';
