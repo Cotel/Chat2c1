@@ -42,7 +42,7 @@ img {
     height: calc( 100% - 32px );
     /*overflow-y: auto;*/
     position: relative;
-    padding: 0 5px;
+    padding: 0 7px;
     margin: 8px 0;
 }
 

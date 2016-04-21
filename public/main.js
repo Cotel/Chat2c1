@@ -132,6 +132,8 @@ socket.on('activeUsers', function(data) {
 					<div class="system-message">Connected users: ${res}</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
+	var chatCont = document.getElementById('chat');
+	chatCont.scrollTop = chatCont.scrollHeight;
 });
 
 socket.on('userConnect', function(data) {
