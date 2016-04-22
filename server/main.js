@@ -24,7 +24,6 @@ var io = new ioServer();
 io.attach(server);
 //io.attach(servers);
 
-
 var users = [];
 
 function checkUrl(string) {
@@ -40,9 +39,22 @@ function checkUrl(string) {
 	}
 }
 
+function getClientsInRoom(roomId) {
+	var res = [];
+	users.forEach(function(user) {
+		if(user.room === roomId) {
+			res.push(user);
+		}
+	});
+	return res;
+}
+
 
 //app.use(express.static(__dirname + '/../public')); //raspi
 app.use(express.static('public'));
+app.use('/room1', express.static('public'));
+app.use('/room2', express.static('public'));
+app.use('/room3', express.static('public'));
 
 app.get('/hello', function(req, res) {
 	res.status(200).send("Hello world");
@@ -56,14 +68,17 @@ io.on('connection', function(socket) {
 	socket.on('resLogin', function(data) {
 		users.push({
 			id: socket.id,
-			name: data
+			name: data.name,
+			room: data.room
 		});
-		socket.emit('activeUsers', users);
-		io.sockets.emit('userConnect', data);
+		socket.room = data.room;
+		socket.join(data.room);
+		socket.emit('activeUsers', getClientsInRoom(socket.room));
+		socket.broadcast.to(socket.room).emit('userConnect', data.name);
 	});
 
 	socket.on('consulta', function() {
-		socket.emit('activeUsers', users);
+		socket.emit('activeUsers', getClientsInRoom(socket.room));
 	});
 
 	socket.on('newMessage', function(data) {
@@ -75,11 +90,13 @@ io.on('connection', function(socket) {
 		data.texto = data.texto.trim();
 		data.texto = checkUrl(data.texto);
 		if(data.texto.length > 0) {
-			io.sockets.emit('oneMessage', data);
+			socket.emit('oneMessage', data);
+			socket.broadcast.in(socket.room).emit('oneMessage', data);
 		}
 	});
 
 	socket.on('disconnect', function() {
+		socket.leave(socket.room);
 		var data;
 		for(var i = 0; i<users.length; i++) {
 			if(users[i].id == socket.id) {
@@ -89,7 +106,7 @@ io.on('connection', function(socket) {
 				continue;
 			}
 		}
-		io.sockets.emit('userLeave', data);
+		socket.broadcast.to(socket.room).emit('userLeave', data);
 	});
 });
 

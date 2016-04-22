@@ -125,7 +125,11 @@ function addMessage() {
 
 socket.on('login', function(data) {
 	myId = data;
-	socket.emit('resLogin', Cookies.get('name'));
+	var toemit = {
+		name: Cookies.get('name'),
+		room: window.location.pathname
+	};
+	socket.emit('resLogin', toemit);
 });
 
 socket.on('activeUsers', function(data) {
@@ -133,8 +137,16 @@ socket.on('activeUsers', function(data) {
 		return item.name+", ";
 	}).join("");
 	res = res.substring(0, res.length-2);
+	var roomname = window.location.pathname;
+	roomname = roomname.replace(/[/]/g, '');
+	if(roomname === '') {
+		roomname = "general";
+	}
 	var html = `<div class="message">
-					<div class="system-message">Connected users: ${res}</div>
+					<div class="system-message">
+					You are in ${roomname}</br>
+					Connected users: ${res}
+					</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
 	var chatCont = document.getElementById('chat');
