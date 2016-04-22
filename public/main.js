@@ -30,6 +30,7 @@ var myId = "";
 var lastUser = "";
 var lastName = "";
 var noleidos = 0;
+var cuenta = 1;
 
 var focused = true;
 
@@ -56,26 +57,31 @@ function generateHTML(elem) {
 	var color = elem.id.substring(0,6);
 	if(myId == elem.id) {
 		if(elem.id == lastUser) {
-			res = (`<div class="message selfmessage">
+			res = (`<div class="message selfmessage" id=${cuenta}>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		} else {
-			res = (`<div class="message selfmessage">
+			res = (`<div class="message selfmessage" id=${cuenta}>
 					<div class="message-user" style="color:#${getColor(color)};">${elem.usuario}</div>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		}
 	} else {
 		if(elem.usuario == lastName && elem.id == lastUser) {
-			res = (`<div class="message">
+			res = (`<div class="message" id=${cuenta}>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		} else {
-			res = (`<div class="message">
+			res = (`<div class="message" id=${cuenta}>
 					<div class="message-user" style="color:#${getColor(color)};">${elem.usuario}</div>
 					<div class="message-text">${elem.texto}</div>
 			</div>`);
 		}
+	}
+	cuenta++;
+	if(cuenta > 100) {
+		var id = cuenta-100;
+		document.getElementById(id).remove();
 	}
 	lastName = elem.usuario;
 	lastUser = elem.id;
@@ -142,22 +148,24 @@ socket.on('activeUsers', function(data) {
 	if(roomname === '') {
 		roomname = "general";
 	}
-	var html = `<div class="message">
+	var html = `<div class="message" id=${cuenta}>
 					<div class="system-message">
 					You are in ${roomname}</br>
 					Connected users: ${res}
 					</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
+	cuenta++;
 	var chatCont = document.getElementById('chat');
 	chatCont.scrollTop = chatCont.scrollHeight;
 });
 
 socket.on('userConnect', function(data) {
-	var html = `<div class="message">
+	var html = `<div class="message" id=${cuenta}>
 					<div class="system-message">${data} connected</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
+	cuenta++;
 	var chatCont = document.getElementById('chat');
 	chatCont.scrollTop = chatCont.scrollHeight;
 });
@@ -166,10 +174,11 @@ socket.on('userLeave', function(data) {
 	var res = data.map(function(item, index) {
 		return item.name;
 	}).join("");
-	var html = `<div class="message">
+	var html = `<div class="message" id=${cuenta}>
 					<div class="system-message">${res} disconnected</div>
 				</div>`;
 	document.getElementById('chat').innerHTML += html;
+	cuenta++;
 	var chatCont = document.getElementById('chat');
 	chatCont.scrollTop = chatCont.scrollHeight;
 });
