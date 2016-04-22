@@ -11,6 +11,11 @@ $(document).ready(function() {
 
 	$("#chat").perfectScrollbar();
 
+	$("#cambioNombre").click(function() {
+		Cookies.remove('name');
+		location.reload();
+	});
+
 	Notification.requestPermission();
 
 	// emojione.imageType = 'svg';

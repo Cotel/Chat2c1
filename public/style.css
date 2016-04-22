@@ -19,8 +19,6 @@ nav {
     top: 0;
     left: 0;
     height: 48px;
-    background-color: #FF7851;
-    box-shadow: 0px 1px 2px #EA3703;
 }
 
 html, body{
@@ -36,11 +34,11 @@ header {
     width: 100%;
     position: fixed;
     left: 0;
-    background: #FF7851;
+    background: #edd77e;
     padding: 10px 10px 10px 50px;
     font-size: 30px;
     line-height: 30px;
-    box-shadow: 0 2px 2px #EC5529;
+    box-shadow: 0 2px 2px #e4c23b;
     z-index: 0;
 }
 
@@ -66,7 +64,7 @@ img {
     width: 50px;
     display: block;
     position: fixed;
-    background: #FF7851;
+    background: #edd77e;
     z-index: 1;
 }
 
@@ -88,7 +86,7 @@ img {
     left: -300px;
     height: 100%;
     width: 300px;
-    background: #FF7851;
+    background: #edd77e;
     overflow-x: hidden;
     overflow-y: auto;
     /*padding: 20px;*/
@@ -136,7 +134,11 @@ img {
 
 .nav-item a:hover {
   color: white;
-  background: #EC5529;
+  background: #e4c23b;
+}
+
+#cambioNombre {
+    border-bottom: 1px solid rgba(0,0,0,.3);
 }
 
 #content {
