@@ -36,9 +36,9 @@ var focused = true;
 
 window.onfocus = function() {
 	focused = true;
-	notification.close();
 	noleidos = 0;
 	document.title = "Chat 2c1";
+	notification.close();
 };
 window.onblur = function() {
 	focused = false;
