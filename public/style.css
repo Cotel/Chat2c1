@@ -269,6 +269,21 @@ input[type=submit]:hover {
     outline-style: none;
 }
 
+ul {
+    height: 100%;
+}
+
+footer {
+    margin-top: -1.5em;
+    margin-left: 10px;
+    color: #8E8E8E;
+}
+
+footer a {
+    text-decoration: none;
+    color: #4495C0;
+}
+
 /* AutoComplete styles for Emoji One */
 
 .dropdown-menu {
