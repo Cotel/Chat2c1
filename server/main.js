@@ -51,6 +51,10 @@ function getClientsInRoom(roomId) {
 
 
 //app.use(express.static(__dirname + '/../public')); //raspi
+// app.use('/room1', express.static(__dirname + '/../public'));
+// app.use('/room2', express.static(__dirname + '/../public'));
+// app.use('/room3', express.static(__dirname + '/../public'));
+
 app.use(express.static('public'));
 app.use('/room1', express.static('public'));
 app.use('/room2', express.static('public'));
